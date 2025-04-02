@@ -1,11 +1,9 @@
-import os
 from infra.hdfs_client import get_client
-from infra.util import load_csv_from_hdfs, save_csv_to_hdfs
+from infra.util import get_stock_name, load_csv_from_hdfs, save_csv_to_hdfs
 from scripts.common_labeling import weak_label_by_count, split_train_valid
 
-stock_name = os.environ.get("STOCK_NAME")
-if not stock_name:
-    raise ValueError("환경변수 STOCK_NAME이 설정되지 않았습니다.")
+stock_name = get_stock_name()
+#stock_name='apple'
 
 # 경로 설정
 input_path = f"/project-root/data/_1_preprocess/{stock_name}_filtered.csv"

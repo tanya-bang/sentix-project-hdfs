@@ -7,6 +7,13 @@ import json
 from infra.hdfs_client import get_client
 import pandas as pd
 import csv
+import os
+
+def get_stock_name() -> str:
+    stock_name = os.environ.get("STOCK_NAME")
+    if not stock_name:
+        raise ValueError("환경변수 STOCK_NAME이 필요합니다.")
+    return stock_name
 
 def load_keyword_file(path: str, as_set: bool = False):
     client = get_client()

@@ -1,11 +1,9 @@
 import os
 from infra.hdfs_client import get_client
-from infra.util import load_csv_from_hdfs, save_csv_to_hdfs
+from infra.util import load_csv_from_hdfs, save_csv_to_hdfs, get_stock_name
 from scripts.common_preprocess import preprocess_comments
 
-stock_name = os.environ.get("STOCK_NAME")
-if not stock_name:
-    raise ValueError("환경변수 STOCK_NAME이 설정되지 않았습니다.")
+stock_name = get_stock_name()
 #stock_name='apple'
 
 # HDFS 경로 설정
